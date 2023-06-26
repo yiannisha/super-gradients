@@ -6,7 +6,7 @@ import tarfile
 import time
 import inspect
 import typing
-import collections
+import collections.abc
 from functools import lru_cache, wraps
 from importlib import import_module
 from itertools import islice
