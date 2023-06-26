@@ -598,10 +598,11 @@ def generate_batch(iterable: Iterable, batch_size: int) -> Iterable:
     return inputs, inputs"""
 def ensure_is_tuple_of_two(inputs):
   
-  if inputs is None:
-    return None
+    if inputs is None:
+        return None
+    if isinstance(inputs, collections.abc.Iterable) and not isinstance(inputs, str):
+        a, b = inputs
+        return a, b
 
-  if isinstance(inputs, collections.abc.Iterable) and not isinstance(inputs, str):
-    a, b = inputs
-    return a, b
+    return inputs, input
 
