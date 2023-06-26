@@ -6,7 +6,7 @@ import tarfile
 import time
 import inspect
 import typing
-from collections.abc import Iterable
+import collections.abc
 from functools import lru_cache, wraps
 from importlib import import_module
 from itertools import islice
@@ -584,12 +584,10 @@ def generate_batch(iterable: Iterable, batch_size: int) -> Iterable:
             return
 
 
-def ensure_is_tuple_of_two(inputs: Union[Any, Iterable[Any], None]) -> Union[Tuple[Any, Any], None]:
-    """
+"""def ensure_is_tuple_of_two(inputs: Union[Any, Iterable[Any], None]) -> Union[Tuple[Any, Any], None]:
     Checks input and converts it to a tuple of length two. If input is None returns None.
     :param inputs: Input argument, either a number or a tuple of two numbers.
     :return: Tuple of two numbers if input is not None, otherwise - None.
-    """
     if inputs is None:
         return None
 
@@ -597,4 +595,13 @@ def ensure_is_tuple_of_two(inputs: Union[Any, Iterable[Any], None]) -> Union[Tup
         a, b = inputs
         return a, b
 
-    return inputs, inputs
+    return inputs, inputs"""
+def ensure_is_tuple_of_two(inputs):
+  
+  if inputs is None:
+    return None
+
+  if isinstance(inputs, collections.abc.Iterable) and not isinstance(inputs, str):
+    a, b = inputs
+    return a, b
+
